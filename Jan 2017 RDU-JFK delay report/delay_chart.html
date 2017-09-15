@@ -1,0 +1,40 @@
+<html>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@4.1.0/dist/simple-statistics.min.js"></script>
+<script src="delay_chart.js"></script>
+<style>
+.wait {
+	fill: red;
+}
+.departure {
+	fill: green;
+}
+.selected {
+	stroke-width: 2px;
+	stroke: black;
+}
+</style>
+<body>
+Sort by:
+<select id="sort_select" onchange="delay_vis.setSortMode(this.value);">
+	<option value="CRS_DEP_TIME">Computerized Reservations Systems Departure Time</option>
+	<option value="DEP_TIME">Departure Time</option>
+	<option value="ARR_TIME">Arrive Time</option>
+	<option value="total">Total Time</option>
+</select>
+Show:
+<select id="show_select" onchange="delay_vis.setShowMode(this.value);">
+	<option value="all">All</option>
+	<option value="less_wait">Wait Time &lt= 5 Minutes</option>
+	<option value="any_wait">5 Minutes &lt Wait Time &lt= 30 Minutes</option>
+	<option value="majority_wait">30 Minutes &lt Wait Time</option>
+</select>
+
+<br/>
+<svg id="vis_canvas" style="height:375px; width:685px; border: 1px solid black;"></svg>
+<script>
+delay_vis = new DelayVis();
+delay_vis.render();
+</script>
+</body>
+</html>
